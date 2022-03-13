@@ -1,0 +1,23 @@
+.error {
+  display: flex;
+  height: 50px;
+  width: 95%;
+  margin: 5px;
+  border: 1px solid #fdeeea;
+  background-color: #fcf4f2;
+}
+
+.error .e_span {
+  display: inline-block;
+  width: 10px;
+  height: 100%;
+  background-color: red;
+}
+.error .e_div{
+    display: flex;
+    padding: 12px 6px;
+}
+.error p{
+    color: #DD4544;
+    margin-left: 6px;
+}

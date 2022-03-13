@@ -1,0 +1,7 @@
+{
+  "name": "HyperForm",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

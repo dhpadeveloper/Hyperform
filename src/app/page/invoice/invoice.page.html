@@ -1,0 +1,68 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-toggle auto-hide="false">
+        <ion-menu-button></ion-menu-button>
+      </ion-menu-toggle>
+    </ion-buttons>
+    <ion-title>Invoice</ion-title>
+    <ion-icon style="margin-right: 10px;font-size: 25px;" slot="end" name="funnel" (click)="openFilter()"></ion-icon>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content [fullscreen]="true">
+   <ion-list>
+  <ion-item-group style="margin-top: 10px;" *ngFor="let invoice of invoiceList; let i= index">
+
+    <ion-item-divider style="border: 0px; ">
+      <ion-label slot="start" style="margin: 0px 5px;">
+        <strong> {{invoice.invoiceNo}}</strong>
+      </ion-label>
+      <ion-label slot="end" style="margin: 0px 20px;">
+        <strong> {{invoice.monthlyPayoutAmount}}</strong>
+      </ion-label>
+    </ion-item-divider>
+    <div style="border-top: 3px solid grey;
+  border-bottom: 3px solid grey">
+
+      <ion-item detail button lines="none" (click)="getInvoiceDetail(invoice.id)">
+
+        <ion-grid>
+          <ion-row class="ion-align-items-start">
+            <ion-col>
+              HSN: {{invoice.hsnNo}}
+            </ion-col>
+            <ion-col>
+              Payout: {{invoice.monthlyPayoutAmount}}
+            </ion-col>
+          </ion-row>
+          <ion-row class="ion-align-items-start">
+            <ion-col>
+              Quaterly Payout: {{invoice.quarterlyPayoutAmount}}
+            </ion-col>
+            <ion-col>
+              Clawback Amount: {{invoice.clawbackPayoutAmount}}
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-item>
+    </div>
+  </ion-item-group>
+</ion-list>
+
+
+
+</ion-content>
+<ion-footer>
+  <ion-toolbar>
+    <ion-segment  native (ionChange)="approveOrReject($event)">
+      <ion-segment-button value="Approve">
+        <ion-label>Approve</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="Rc">
+        <ion-label>Reject</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+</ion-footer> 

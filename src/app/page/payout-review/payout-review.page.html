@@ -1,0 +1,260 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-toggle auto-hide="false">
+        <ion-menu-button></ion-menu-button>
+      </ion-menu-toggle>
+    </ion-buttons>
+    <ion-title>Payout Review</ion-title>
+    <ion-icon style="margin-right: 10px;font-size: 25px;" slot="end" name="funnel" (click)="openFilter()"></ion-icon>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content [fullscreen]="true">
+  <ng-container *ngFor="let item of chipList">
+    <ion-chip>
+      <small>
+        <ion-label color="secondary"> {{item.name}} : {{item.value}}</ion-label>
+      </small>
+    </ion-chip>
+  </ng-container>
+  <ion-segment native (ionChange)="onSegmentChanged($event)">
+    <ion-segment-button checked value="case">
+      <ion-label>Case</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="clawback">
+      <ion-label>Clawback</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="payout">
+      <ion-label>DSA</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+  <ng-container *ngIf="isdataLoadOrNot">
+    <ng-container *ngIf="isListEmpty && multiSelect">
+      <strong class="text-danger ml-5">*Please select the record to approve or reject</strong>
+    </ng-container>
+    <!-- <ng-container *ngIf="caseList.length<=0">
+      <div class="error">No Data Found</div>
+   </ng-container> -->
+    <ion-list *ngIf="selectedSegment==='case'">
+      <ng-container *ngIf="caseList">
+        <ion-item-group
+          *ngFor="let case of caseList | paginate: { id: 'clients', itemsPerPage: 3, currentPage: pageNumber}; let i= index ">
+          <ion-item-divider style="border: 0px; ">
+            <ion-checkbox slot="start"
+              [disabled]="!permissionList.includes('basic_row_selection') || ( permissionList.includes('basic_row_selection_only_non_special') && case.isSpecial=='Y')"
+              [(ngModel)]="case.isChecked" (ionChange)="onCaseCheck(case,i,'case')">
+            </ion-checkbox>
+            <ion-label slot="start" style="margin: 0px 5px;">
+              <strong> {{case.applApac}}</strong>
+            </ion-label>
+            <ion-label slot="end" style="margin: 0px 20px;">
+              <strong> {{case.dsaCrn}}</strong>
+            </ion-label>
+          </ion-item-divider>
+          <div class="border-tb">
+
+            <ion-item [detail]="!isAgencyUser" button lines="none" (click)="getCaseDetail(case.payoutDetail_Id)">
+
+              <ion-grid>
+                <ion-row class="ion-align-items-start">
+                  <ion-col class="textSize">
+                    Disb Amt: {{case.disbursalAmount}}
+                  </ion-col>
+                  <ion-col class="textSize">
+                    Agr Amt: {{case.netPayToCustomer}}
+                  </ion-col>
+                </ion-row>
+                <ion-row class="ion-align-items-start">
+                  <ion-col class="textSize">
+                    PF Amt: {{case.processingFeeCollectedWithoutGst}}
+                  </ion-col>
+                  <ion-col class="textSize">
+                    Product: {{case.productCode}}
+                  </ion-col>
+                </ion-row>
+                <ion-row class="ion-align-items-start">
+                  <ion-col class="textSize">
+                    Customer: {{case.customerName}}
+                  </ion-col>
+                  <ion-col class="textSize">
+                    Location: {{case.location}}
+                  </ion-col>
+                </ion-row>
+                <ion-row class="ion-align-items-start">
+                  <ion-col class="textSize">
+                    Kli: {{case.kliPayoutAmount}}
+                  </ion-col>
+                  <ion-col class="textSize">
+                    Kgi: {{case.kgiPayoutAmount}}
+                  </ion-col>
+                </ion-row>
+                <ion-row class="ion-align-items-start">
+                  <ion-col class="textSize">
+                    Gst: {{case.gstAmount}}
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-item>
+          </div>
+        </ion-item-group>
+      </ng-container>
+    </ion-list>
+
+    <ion-list *ngIf="selectedSegment==='clawback'">
+      <ion-item-group *ngFor="let case of caseList; let i =index">
+        <ion-item-divider style="border: 0px; ">
+          <ion-label slot="start" style="margin: 0px 5px;">
+            <strong>{{case.applApac}}</strong>
+          </ion-label>
+          <ion-label slot="end" style="margin: 0px 20px;">
+            <strong>{{case.cancelPayoutAmount}}</strong>
+          </ion-label>
+        </ion-item-divider>
+        <div class="border-tb">
+          <ion-item lines="none">
+            <ion-grid>
+              <ion-row class="ion-align-items-start">
+                <ion-col class="textSize">
+                  Cancelled Apac: {{case.cancelApplApac}}
+                </ion-col>
+                <ion-col class="textSize" style="margin-right: 10px;">
+                  Cancellation Date: {{case.cancellationDate}}
+                </ion-col>
+              </ion-row>
+              <ion-row class="ion-align-items-start">
+                <ion-col class="textSize">
+                  Disb Amount: {{case.cancelDisbursalAmount}}
+                </ion-col>
+                <ion-col class="textSize">
+                  Disb Date: {{case.cancelDisbursalDate}}
+                </ion-col>
+              </ion-row>
+              <ion-row class="ion-align-items-start">
+                <ion-col class="textSize">
+                  Payout Date: {{case.cancelPayoutMonth}}
+                </ion-col>
+                <ion-col class="textSize">
+                  Payout: {{case.cancelPayoutAmount}}
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-item>
+        </div>
+      </ion-item-group>
+    </ion-list>
+
+    <ion-list *ngIf="selectedSegment==='payout'">
+      <ion-item-group *ngFor="let case of caseList; let i =index">
+        <ion-item-divider style="border: 0px; ">
+          <ion-checkbox slot="start" [(ngModel)]="case.isChecked" (ionChange)="onCaseCheck(case,i,'payout')">
+          </ion-checkbox>
+          <ion-label slot="start" style="margin: 0px 5px;">
+            <strong>{{case.dsaCrn}}</strong>
+          </ion-label>
+          <ion-label slot="end" style="margin: 0px 20px;">
+            <strong>{{case.finalPayout}}</strong>
+          </ion-label>
+        </ion-item-divider>
+        <div class="border-tb">
+          <ion-item lines="none">
+            <ion-grid>
+              <ion-row class="ion-align-items-start">
+                <ion-col class="textSize">
+                  Name: {{case.dsaName}}
+                </ion-col>
+                <ion-col class="textSize" style="margin-right: 10px;">
+                  Payout: {{case.payoutAmount}}
+                </ion-col>
+              </ion-row>
+              <ion-row class="ion-align-items-start">
+                <ion-col class="textSize">
+                  Quaterly Payout: {{case.quarterlyPayout}}
+                </ion-col>
+                <ion-col class="textSize">
+                  Clowback: {{case.clawbackAmount}}
+                </ion-col>
+              </ion-row>
+            </ion-grid>
+          </ion-item>
+        </div>
+      </ion-item-group>
+    </ion-list>
+    <pagination-controls (pageChange)=" loadData($event)" id="clients" maxSize="15" directionLinks="true"
+      autoHide="true"></pagination-controls>
+    <ng-container *ngIf="selectedSegment==='case'">
+      <ion-item>
+        <ion-label position="floating">Remark</ion-label>
+        <ion-textarea [(ngModel)]="remarkAction"></ion-textarea>
+      </ion-item>
+      <p class="text-danger ml-5" *ngIf="emptyRemarkActionMsg!=''">{{emptyRemarkActionMsg}}</p>
+    </ng-container>
+
+  </ng-container>
+
+
+  <ng-container *ngIf="!isdataLoadOrNot">
+    <ion-list>
+
+      <ion-item-group *ngFor="let case of [].constructor(3)">
+        <ion-item-divider>
+          <ion-label slot="start">
+            <ion-skeleton-text animated style="width: 100%"></ion-skeleton-text>
+          </ion-label>
+        </ion-item-divider>
+        <ion-item>
+          <ion-grid>
+            <ion-row>
+              <ion-col>
+                <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-item>
+      </ion-item-group>
+
+    </ion-list>
+  </ng-container>
+
+
+
+
+</ion-content>
+<ion-footer>
+  <ion-buttons *ngIf="showMoreOptionDiv" style="background-color: #f4f5f8;">
+    <ion-button *ngIf="multiSelect" color="dark" (click)="selectOrUnSelectCase(1)" class="w-25">
+      <ion-icon name="checkmark-done-outline"></ion-icon>
+    </ion-button>
+    <ion-button *ngIf="multiSelect" color="dark" (click)="selectOrUnSelectCase(2)" class="w-25">
+      <ion-icon name="close-outline"></ion-icon>
+    </ion-button>
+    <ion-button color="dark" (click)="downloadCaseDetailFile()" class="w-25" [class.w-50]="!multiSelect">
+      <ion-icon name="arrow-down-outline"></ion-icon>
+    </ion-button>
+    <ion-button color="dark" (click)="onDownloadHoldRecords()" class="w-25" [class.w-50]="!multiSelect"
+      style="font-weight: 500">
+      <ion-icon name="arrow-down-outline"></ion-icon>
+      <ion-label>H</ion-label>
+    </ion-button>
+  </ion-buttons>
+
+  <ion-toolbar color="light">
+    <ion-buttons>
+      <ion-button class="w-42" (click)="doAction('approve')">
+        Approve
+      </ion-button>
+      <ion-button class="w-42" (click)="doAction('reject')">
+        Reject
+      </ion-button>
+      <ion-button (click)="toogleMoreOptionDiv()" class="w-16">
+        <ion-icon name="ellipsis-vertical-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>

@@ -1,0 +1,88 @@
+ion-col {
+  font-size: 10px;
+}
+
+.d-flex {
+  justify-content: space-between;
+  display: flex;
+}
+.d-flexo {
+  display: flex;
+}
+.w-50 {
+  width: 50%;
+}
+.w-98 {
+  width: 98%;
+}
+
+.text-danger {
+  color: red;
+}
+
+.ml-5 {
+  margin-left: 5px;
+}
+
+.fs-14 {
+  font-size: 14px;
+}
+
+.w-42 {
+  width: 42%;
+}
+.w-16 {
+  width: 16%;
+}
+
+.w-25 {
+  width: 25%;
+}
+
+
+.down-icon{
+    width: 60px;
+    height: 20px;
+    text-align: center;
+    margin: auto;
+    cursor: pointer;
+}
+.ios .down-icon{
+  margin-right: 1%;
+}
+
+.a-but {
+  margin-right: 9px;
+  //css for round
+    width: 30px;
+    height: 30px;
+}
+
+.ios .a-but {
+  margin-right: 10%;
+}
+
+
+.add-icon{
+  // css for round
+  height: 18px;
+    width: 22px;
+    margin: -8px;
+}
+
+
+
+//download button square 
+.d-but {
+  width: 43px;
+  height: 28px;
+  font-size: 12px;
+  margin-right: 7px;
+  margin-top: 10px;
+}
+
+.ios .d-but {
+  width: 17%;
+  margin-right: 11px;
+}
+//end

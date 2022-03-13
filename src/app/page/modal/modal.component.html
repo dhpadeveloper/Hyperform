@@ -1,0 +1,50 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title slot="secondary">Filter</ion-title>
+   <ion-buttons slot="end">
+     <ion-button  (click)="applyFilter()" color="secondary">Apply</ion-button>
+  </ion-buttons>
+    </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-item *ngIf="filterList.includes('payoutMonth')">  
+    <ion-label>Payout Month</ion-label>
+    <ion-select   [(ngModel)]="selectedSprint" name="sprint" (ionChange)="changePayoutMonth(selectedSprint)" interface="popover">
+      <ion-select-option *ngFor="let sprint of sprintList" [value]="sprint">{{sprint.description}}</ion-select-option>
+    </ion-select>
+  </ion-item>
+  <ion-item *ngIf="filterList.includes('businessPartner')">
+    <ion-label>Business Partner Name</ion-label>
+    <ion-input [(ngModel)]="bpname"></ion-input>
+  </ion-item>
+  <ion-item *ngIf="filterList.includes('disbursementDate')">
+    <ion-label>Disbursement Month-Year (MM-YYYY)</ion-label>
+    <ion-input [(ngModel)]="disbursementDate"></ion-input>
+  </ion-item>
+  <ion-item *ngIf="filterList.includes('crn')">
+    <ion-label>Business Partner CRN</ion-label>
+    <ion-input [(ngModel)]="crnName"></ion-input>
+  </ion-item>
+  <ion-item  *ngIf="filterList.includes('product')">
+    <ion-label>Product</ion-label>
+    <ion-input [(ngModel)]="product"></ion-input>
+  </ion-item>
+  <ion-item *ngIf="filterList.includes('caseCategory')">  
+    <ion-label>Case Category</ion-label>
+    <ion-select   [(ngModel)]="selectedCategory" name="category" interface="popover" class="custom-options" okText="Okay" cancelText="Dismiss">
+      <ion-select-option *ngFor="let category of caseCategoryList" value="{{category.value}}">{{category.key}}</ion-select-option>
+    </ion-select>
+  </ion-item>
+  <ion-item *ngIf="filterList.includes('applApac')">
+    <ion-label>APPLAPAC</ion-label>
+    <ion-input [(ngModel)]="applApac"></ion-input>
+  </ion-item>
+  <ion-item *ngIf="filterList.includes('childUser')">  
+    <ion-label>User</ion-label>
+    <ion-select   [(ngModel)]="selectedUser" name="user" interface="popover">
+      <ion-select-option *ngFor="let user of childUserList" [value]="user">{{user.name}}</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+
+</ion-content>

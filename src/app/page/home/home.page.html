@@ -1,0 +1,282 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-toggle auto-hide="false">
+        <ion-menu-button></ion-menu-button>
+      </ion-menu-toggle>
+    </ion-buttons>
+    <ion-title>Home</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+  <div>
+    <ion-grid>
+      <ion-row>
+        <ion-col col-6>
+          <ion-card button text-center padding (click)="openAlert()">
+            <ion-card-header>
+              <ion-card-title>Total Business Partner Managed</ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+              1
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+        <ion-col col-6>
+          <ion-card button text-center padding color="primary">
+            <ion-card-header>
+              <ion-card-title>Business Partner Payout Processed For</ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+              1
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-6>
+          <ion-card button text-center padding color="primary">
+            <ion-card-header>
+              <ion-card-title>Final Payout Amount (Cr)</ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+              0.03
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+        <ion-col col-6>
+          <ion-card button text-center padding>
+            <ion-card-header>
+              <ion-card-title>APAC Count</ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+              2
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-6>
+          <ion-card button text-center padding>
+            <ion-card-header>
+              <ion-card-title>Insurance Collected (Cr)</ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+              0.00
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+        <ion-col col-6>
+          <ion-card button text-center padding color="primary">
+            <ion-card-header>
+              <ion-card-title>Cost of Acquisition (%)</ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+              1.50%
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-6>
+          <ion-card button text-center padding color="primary">
+            <ion-card-header>
+              <ion-card-title>PF (%)</ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+              0.89%
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+        <ion-col col-6>
+          <ion-card button text-center padding>
+            <ion-card-header>
+              <ion-card-title>Brokerage (Total Payout) (%)</ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+              0.61%
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-6>
+          <ion-card button text-center padding>
+            <ion-card-header>
+              <ion-card-title>WiRR</ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+              7.75%
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+        <ion-col></ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+
+  <div>
+    <ion-grid>
+      <ion-row>
+        <ion-col col-6>
+          <ion-card text-center padding>
+            <ion-item>
+              <ion-label>Total Business Partner Managed</ion-label>
+              <ion-button fill="outline" slot="end" (click)="openDes()">View</ion-button>
+            </ion-item>
+            <ion-card-content>
+              <div *ngIf='descriptionShow'>
+                <ion-item-group>
+                  <ion-item-divider>
+                    <ion-label>Business Partner Details</ion-label>
+                  </ion-item-divider>
+
+                  <ion-item>
+                    <ion-label>No. of Business Partner Active- 1</ion-label>
+                  </ion-item>
+                  <ion-item>
+                    <ion-label>No. of Business Partner Done Business- 1</ion-label>
+                  </ion-item>
+                  <ion-item>
+                    <ion-label>Active Business Partner (%)- 100.00%</ion-label>
+                  </ion-item>
+                </ion-item-group>
+              </div>
+              1
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+        <ion-col col-6>
+          <ion-card text-center padding>
+            <ion-item>
+              <ion-label>Business Partner Payout Processed For</ion-label>
+            </ion-item>
+            <ion-card-content>
+              1
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col col-6>
+          <ion-card text-center padding>
+            <ion-item>
+              <ion-label>Final Payout Amount (Cr)</ion-label>
+              <ion-button fill="outline" slot="end">View</ion-button>
+            </ion-item>
+            <ion-card-content>
+              0.03
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+        <ion-col col-6>
+          <ion-card text-center padding>
+            <ion-item>
+              <ion-label>APAC Count</ion-label>
+            </ion-item>
+            <ion-card-content>
+              2
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+  <div>
+
+    <!-- <ion-card>
+      <ng-container *ngFor='let card of cardList; i as index'>
+        <ion-item class="ion-activated">
+          <ion-label>{{card.name}}</ion-label>
+          <ion-note color="primary" slot="end">{{card.value}}</ion-note>
+          <ion-card-content *ngIf='card.expand'>
+            2
+          </ion-card-content>
+        </ion-item>
+      </ng-container>
+    </ion-card> -->
+    <ion-card>
+      <ion-item button class="ion-activated" (click)="openDes()">
+        <ion-label>Total Business Partner Managed</ion-label>
+        <ion-note color="primary" slot="end">1</ion-note>
+      </ion-item>
+      <ion-card-content *ngIf='descriptionShow'>
+          <ion-item-group>
+            <ion-item-divider>
+              <ion-label>Business Partner Details</ion-label>
+            </ion-item-divider>
+
+            <ion-item>
+              <ion-label>No. of Business Partner Active- 1</ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label>No. of Business Partner Done Business- 1</ion-label>
+            </ion-item>
+            <ion-item>
+              <ion-label>Active Business Partner (%)- 100.00%</ion-label>
+            </ion-item>
+          </ion-item-group>
+      </ion-card-content>
+      <ion-item>
+        <ion-label>Business Partner Payout Processed For</ion-label>
+        <ion-note color="primary" slot="end">1</ion-note>
+      </ion-item>
+      <ion-item class="ion-activated">
+        <ion-label>Final Payout Amount (Cr)</ion-label>
+        <ion-note color="primary" slot="end">0.03</ion-note>
+      </ion-item>
+      <ion-item>
+        <ion-label>APAC Count</ion-label>
+        <ion-note color="primary" slot="end">2</ion-note>
+      </ion-item>
+    </ion-card>
+  </div>
+
+  <div class="ion-padding">
+    <ion-card>
+      <ion-card-header>
+        PF,Brokerage,COA Chart
+      </ion-card-header>
+      <ion-card-content>
+        <canvas #grpMixedCanvas></canvas>
+      </ion-card-content>
+    </ion-card>
+    <ion-card>
+      <ion-card-header>
+        No. Of Payout Pending For
+      </ion-card-header>
+      <ion-card-content>
+        <canvas #hrBarCanvas></canvas>
+      </ion-card-content>
+    </ion-card>
+    <ion-card>
+      <ion-card-header>
+        Insurance peneration Chart
+      </ion-card-header>
+      <ion-card-content>
+        <canvas #ipcMixedCanvas></canvas>
+      </ion-card-content>
+    </ion-card>
+    <ion-card>
+      <ion-card-header>
+        Payout Chart
+      </ion-card-header>
+      <ion-card-content>
+        <canvas #pamtBarCanvas></canvas>
+      </ion-card-content>
+    </ion-card>
+    <ion-card>
+      <ion-card-header>
+        Business Partner Active/Inactive-Month Wise Chart
+      </ion-card-header>
+      <ion-card-content>
+        <canvas #bpaiCanvas></canvas>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+</ion-content>

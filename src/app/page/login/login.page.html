@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-toolbar>
+   <ion-buttons slot="start">
+    <ion-menu-toggle auto-hide="false">
+    <ion-menu-button></ion-menu-button>
+  </ion-menu-toggle>
+  </ion-buttons> 
+
+    <ion-title>Login</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+
+ 
+  <div   *ngIf="invalidUserMsg!=''" class="error">
+    <span class="e_span"></span>
+    <div class="e_div">
+    <strong>Error:  </strong>
+    <p>{{invalidUserMsg}}</p>
+    </div>
+  </div>
+
+
+  <form>
+    <ion-item lines="full">
+      <ion-label position="floating">UserName</ion-label>
+      <ion-input type="text" required   id="name" name="name" [(ngModel)] ="user.name"></ion-input>
+    </ion-item>
+
+    <ion-item lines="full">
+      <ion-label position="floating">Password</ion-label>
+      <ion-input type="password" required  id="password" name="password" [(ngModel)]="user.password" ></ion-input>
+    </ion-item>
+
+    <ion-row>
+      <ion-col>
+        <ion-button type="submit" (click)="handleLogin()"   color="danger" expand="block">Sign In</ion-button>
+        
+        <!-- <a [routerLink]="['/forgot-password']" class="small-text">Forgot Password?</a> -->
+      </ion-col>
+    </ion-row>
+  </form>
+</ion-content>

@@ -1,0 +1,65 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="invoice" color="secondary"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Invoice Details</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ng-container *ngIf="dataInValidFlag">
+    <small class="text-danger ml-5">*Please enter required values</small>
+  </ng-container>
+  <ng-container *ngIf="fileInvalidMsg!=''">
+    <small class="text-danger ml-5">{{fileInvalidMsg}}</small>
+  </ng-container>
+  <form style="margin: 2px;">
+    <ion-item lines="full">
+      <ion-label position="floating">Invoice No</ion-label>
+      <ion-input type="text" required id="invoiceNo" name="invoiceNo" [(ngModel)]="currentInvoice.invoiceNo"
+        #invoiceNo="ngModel" (ionChange)="validateInvoiceNo()" (ionBlur)="validateInvoiceNo()"></ion-input>
+    </ion-item>
+    <ng-container *ngIf="invoiceNoInvalidMsg!=''">
+      <small class="text-danger ml-5">{{invoiceNoInvalidMsg}}</small>
+    </ng-container>
+
+    <ion-item lines="full">
+      <ion-label position="floating">HSN</ion-label>
+      <ion-input type="password" required id="hsn" name="hsn" [(ngModel)]="currentInvoice.hsnNo"
+        (ionBlur)="validateHsnValue()" (ionChange)="validateHsnValue()"></ion-input>
+    </ion-item>
+    <ng-container *ngIf="hsnInvalidMsg!=''">
+      <small class="text-danger ml-5">{{hsnInvalidMsg}}</small>
+    </ng-container>
+
+    <ion-item lines="full">
+      <ion-label position="floating">Remarks</ion-label>
+      <ion-textarea required [(ngModel)]="currentInvoice.remarks" name="remark" #remark="ngModel"></ion-textarea>
+    </ion-item>
+    <ng-container *ngIf="remarkInvalidMsg!=''">
+      <small class="text-danger ml-5">{{remarkInvalidMsg}}</small>
+    </ng-container>
+  </form>
+
+</ion-content>
+<ion-footer>
+  <ion-toolbar color="light">
+    <!-- <div class="d-flex">
+        <ion-button class="w-50" (click)="onInvoiceDownloadOrUpload('download',$event)">Download</ion-button>
+        <ion-button class="w-50"  (click)="f.click()">
+          <ion-label slot="end">Upload Invoice</ion-label>
+        </ion-button>
+          <input class="ion-hide" #f type="file" (change)="onInvoiceDownloadOrUpload('upload',$event)">
+      </div> -->
+
+
+    <ion-buttons>
+      <ion-button class="w-50" (click)="onInvoiceDownloadOrUpload('download',$event)">Download</ion-button>
+      <ion-button class="w-50" (click)="f.click()">
+        <ion-label slot="end">Upload Invoice</ion-label>
+      </ion-button>
+      <input class="ion-hide" #f type="file" (change)="onInvoiceDownloadOrUpload('upload',$event)">
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>

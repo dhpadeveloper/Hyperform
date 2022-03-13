@@ -1,0 +1,408 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="payout-review" color="secondary"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Details</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content [fullscreen]="true">
+  <ng-container *ngIf="detailedCase">
+    <ion-item-group>
+      <ion-item-divider>
+        <ion-label slot="start" style="margin: 0px 5px;">
+          Case Details
+        </ion-label>
+      </ion-item-divider>
+      <div>
+
+        <ion-item lines="full">
+          <ion-grid>
+            <ion-row class="ion-align-items-start">
+              <ion-col class="ion-text-wrap">
+                APPLAPAC: {{detailedCase.applApac}}
+              </ion-col>
+              <ion-col>
+                Location: {{detailedCase.location}}
+              </ion-col>
+            </ion-row>
+            <ion-row class="ion-align-items-start">
+              <ion-col>
+                Portfolio: {{detailedCase.portfolio}}
+              </ion-col>
+              <ion-col>
+                Customer Name: {{detailedCase.customerName}}
+              </ion-col>
+            </ion-row>
+            <ion-row class="ion-align-items-start">
+              <ion-col>
+                Loan Amout (In Rs): {{detailedCase.sanctionAmount}}
+              </ion-col>
+              <ion-col>
+                Product {{detailedCase.productCode}}
+              </ion-col>
+            </ion-row>
+            <ion-row class="ion-align-items-start">
+              <ion-col>
+                Business Partner Name: {{detailedCase.dsaName}}
+              </ion-col>
+              <ion-col>
+                Disbursal Amount: {{detailedCase.disbursalAmount}}
+              </ion-col>
+            </ion-row>
+            <ion-row class="ion-align-items-start">
+              <ion-col>
+                Scheme Desc: {{detailedCase.schemeDescription}}
+              </ion-col>
+              <ion-col>
+                Business Partner CRN: {{detailedCase.dsaCrn}}
+              </ion-col>
+            </ion-row>
+            <ion-row class="ion-align-items-start">
+              <ion-col>
+                Customer Profile: {{detailedCase.profile}}
+              </ion-col>
+              <ion-col>
+                Case type: {{detailedCase.caseType}}
+              </ion-col>
+            </ion-row>
+            <ion-row class="ion-align-items-start">
+              <ion-col>
+                Disbursement Month: {{detailedCase.disbursalMonth}}
+              </ion-col>
+              <ion-col>
+                Is Fraud?: {{detailedCase.isFraud}}
+              </ion-col>
+            </ion-row>
+            <ion-row class="ion-align-items-start">
+              <ion-col>
+                Cheque Status: {{detailedCase.chequeStatus}}
+              </ion-col>
+              <ion-col>
+                Deal IRR %: {{detailedCase.dealIRR}}
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-item>
+      </div>
+    </ion-item-group>
+
+    <ion-item-group>
+      <ion-item-divider>
+        <ion-label slot="start" style="margin: 0px 5px;">
+          Payout Details
+        </ion-label>
+      </ion-item-divider>
+      <div>
+
+        <ion-item lines="full">
+          <ion-grid>
+            <ion-row class="ion-align-items-start">
+              <ion-col class="textSize ion-text-wrap">
+                KGI Premium: {{detailedCase.kgiPremium}}
+              </ion-col>
+              <ion-col>
+                Min Proc Fee (%): {{detailedCase.processingFeeToBeCollectedPercentages}}
+              </ion-col>
+            </ion-row>
+            <ion-row class="ion-align-items-start">
+              <ion-col>
+                GST (%): {{detailedCase.gstPayoutPercentages}}
+              </ion-col>
+              <ion-col>
+                KLI Premium: {{detailedCase.kliPremium}}
+              </ion-col>
+            </ion-row>
+            <ion-row class="ion-align-items-start">
+              <ion-col>
+                Min Proc Fee (Amount): {{detailedCase.processingFeeToBeCollected}}
+              </ion-col>
+              <ion-col>
+                GST Amount (In Rs): {{detailedCase.gstAmount}}
+              </ion-col>
+            </ion-row>
+            <ion-row class="ion-align-items-start">
+              <ion-col>
+                KLI Payout (%): {{detailedCase.kliPayoutPercentages}}
+              </ion-col>
+              <ion-col>
+                Processing Fee (%): {{detailedCase.processingFeeCollectedPercentages}}
+              </ion-col>
+            </ion-row>
+            <ion-row class="ion-align-items-start">
+              <ion-col>
+                Payout (%): {{detailedCase.payoutPercentages}}
+              </ion-col>
+              <ion-col>
+                KGI Payout (%): {{detailedCase.kgiPayoutPercentages}}
+              </ion-col>
+            </ion-row>
+            <ion-row class="ion-align-items-start">
+              <ion-col>
+                Processing Fee Collected (Amount): {{detailedCase.processingFeeCollectedWithGst}}
+              </ion-col>
+              <ion-col>
+                OD Payout (%): {{detailedCase.odPayoutPercentages}}
+              </ion-col>
+            </ion-row>
+            <ion-row class="ion-align-items-start">
+              <ion-col>
+                KGI Payout Amount (In Rs): {{detailedCase.kgiPayoutAmount}}
+              </ion-col>
+              <ion-col>
+                Cut-off Payout (Amount) (In Rs): {{detailedCase.cutOffAmount}}
+              </ion-col>
+            </ion-row>
+            <ion-row class="ion-align-items-start">
+              <ion-col>
+                Final Payout Amount (In Rs): {{detailedCase.totalPayoutWithGst}}
+              </ion-col>
+              <ion-col>
+                KLI Payout Amount (In Rs): {{detailedCase.kliPayoutAmount}}
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-item>
+      </div>
+    </ion-item-group>
+
+    <ion-item-group>
+      <ion-item-divider style="border: 0px; ">
+        <ion-label slot="start" style="margin: 0px 5px;">
+          Special
+        </ion-label>
+        <ion-button class="a-but" shape="round" [disabled]="isNotOverridable" (click)="onOverrideSpecial('special','N','')" slot="end">
+          <ion-icon class ="add-icon" name="add-outline"></ion-icon>
+        </ion-button>
+
+        <!-- <a href="" style="text-align:center; color:white;border:1px solid blue; height:30px;width:30px ;border-radius:50%;background-color:#3880ff"><ion-icon name="remove-outline"></ion-icon></a> -->
+      </ion-item-divider>
+      <div style="display: flex;justify-content: space-between;" *ngFor="let item of specialList; let i= index">
+        <ion-item style="width: 100%;" detail=false button lines= "full"
+          (click)="onOverrideSpecial('special','Y',item.type)">
+          <ion-grid>
+            <ion-row class="ion-align-items-start">
+              <ion-col>
+                {{item.type}}
+              </ion-col>
+              <ion-col>
+                {{item.value}}
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-item>
+        <!-- <ion-button class="d-but" (click)="onDownload(item.fileName,item.type)"> -->
+          <ion-icon  color="primary" class="down-icon" (click)="onDownload(item.fileName,item.type)" name="arrow-down-outline"></ion-icon>
+        <!-- </ion-button> -->
+      </div>
+    </ion-item-group>
+    <ion-item-group>
+      <ion-item-divider style="border: 0px; ">
+        <ion-label slot="start" style="margin: 0px 5px;">
+          Insurance
+        </ion-label>
+        <ion-button class="a-but" shape="round" [disabled]="isNotOverridable" (click)="onOverrideSpecial('insurance','N','')"
+          slot="end">
+          <ion-icon class ="add-icon" name="add-outline"></ion-icon>
+        </ion-button>
+      </ion-item-divider>
+      <div style="display: flex;justify-content: space-between;" *ngFor="let item of insuranceList; let i= index">
+        <ion-item style="width: 100%;" detail=false button lines="full"
+          (click)="onOverrideSpecial('insurance','Y',item.type)">
+
+          <ion-grid>
+            <ion-row class="ion-align-items-start">
+              <ion-col>
+                {{item.type}}
+              </ion-col>
+              <ion-col>
+                {{item.value}}
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-item>
+        <!-- <ion-button class="d-but" (click)="onDownload(item.fileName,item.type)"> -->
+          <ion-icon color="primary" class="down-icon" (click)="onDownload(item.fileName,item.type)"  name="arrow-down-outline"></ion-icon>
+        <!-- </ion-button> -->
+      </div>
+    </ion-item-group>
+
+
+
+    <ion-item-group>
+      <ion-item-divider style="border: 0px; ">
+        <ion-label line="full" slot="start" style="margin: 0px 5px;">
+          Documents
+        </ion-label>
+      </ion-item-divider>
+
+       <div style="display: flex;justify-content: space-between;">
+        <ion-item style="width: 100%;" detail=false button lines="full"
+        (click)="onOverrideDocument(otcPending.pendingOrNot,otcPending.type,otcPending.remarks)">
+
+          <ion-grid>
+            <ion-row class="ion-align-items-start">
+              <ion-col>
+                {{otcPending.type}}
+              </ion-col>
+              <ion-col>
+                {{otcPending.pendingOrNot}}
+              </ion-col>
+              <ion-col>
+                <ion-icon *ngIf="otcPending.pendingOrNot=='N'" name="close"></ion-icon>
+                <ion-icon *ngIf="otcPending.pendingOrNot!='N'" name="checkmark"></ion-icon>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-item>
+          <ion-icon color="primary" class="down-icon" (click)="onDownload(otcPending.fileName,otcPending.type)" name="arrow-down-outline"></ion-icon>
+      </div>
+
+
+ <div style="display: flex;justify-content: space-between;">
+      <ion-item style="width: 100%;" button lines="full" detail=false
+      (click)="onOverrideDocument(pddPending.pendingOrNot,pddPending.type,pddPending.remarks)">
+
+      <ion-grid>
+        <ion-row class="ion-align-items-start">
+
+          <ion-col>
+            {{pddPending.type}}
+          </ion-col>
+          <ion-col>
+            {{pddPending.pendingOrNot}}
+          </ion-col>
+          <ion-col>
+            <ion-icon *ngIf="pddPending.pendingOrNot=='N'" name="close"></ion-icon>
+            <ion-icon *ngIf="pddPending.pendingOrNot!='N'" name="checkmark"></ion-icon>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-item>
+      <ion-icon color="primary" class="down-icon" (click)="onDownload(pddPending.fileName,pddPending.type)" name="arrow-down-outline"></ion-icon>
+</div>
+
+
+      
+    
+    </ion-item-group>
+
+    <ion-item-group>
+
+      <!-- <ion-item-divider style="border: 0px; ">
+              <ion-label slot="start" class="fs-14">
+                User
+              </ion-label>
+       
+              <ion-label class="fs-14" style="margin-left: -9px;">
+                Remark
+              </ion-label>
+           
+        <ion-button slot="end" shape="round" class ="a-but" (click)="toggleShow()">
+          <ion-icon class ="add-icon" name="chevron-down-outline"></ion-icon>
+        </ion-button>
+      </ion-item-divider> -->
+
+
+      <ion-item-divider style="border: 0px; ">
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              <ion-label class="fs-14">
+                User
+              </ion-label>
+            </ion-col>
+            <ion-col>
+              <ion-label class="fs-14" style="margin-left: -9px;">
+                Remark
+              </ion-label>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+        <ion-button shape="round" class ="a-but" (click)="toggleShow()">
+          <ion-icon class ="add-icon" name="chevron-down-outline"></ion-icon>
+        </ion-button>
+      </ion-item-divider>
+      <div *ngIf="toggleRemarkDiv">
+        <ion-item *ngFor="let item of remarkList" lines="full">
+          <ion-grid>
+            <ion-row class="ion-align-items-start">
+              <ion-col>
+                {{item.name}}
+              </ion-col>
+              <ion-col>
+                {{item.remark}}
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-item>
+      </div>
+    </ion-item-group>
+
+
+
+    <ion-item *ngIf="pddPending.pendingOrNot!='N' || otcPending.pendingOrNot!='N'">
+      <ion-label>--- Please Select Remark ---</ion-label>
+      <ion-select (ionChange)="emptySelectedRemarkActionMsg=''" [(ngModel)]="selectedRemarksAction">
+        <ion-select-option value="OTC Pending">OTC Pending</ion-select-option>
+        <ion-select-option value="PDD Pending">PDD Pending</ion-select-option>
+        <ion-select-option value="OTC And PDD Pending">OTC And PDD Pending</ion-select-option>
+        <ion-select-option value="Awaiting for BH approvals">Awaiting for BH approvals</ion-select-option>
+        <ion-select-option value="Pending for agreement formalities">Pending for agreement formalities
+        </ion-select-option>
+        <ion-select-option value="Cheque Unrealized">Cheque Unrealized</ion-select-option>
+        <ion-select-option value="Others">Others</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <small class="text-danger ml-5" *ngIf="emptySelectedRemarkActionMsg!=''">{{emptySelectedRemarkActionMsg}}</small>
+
+    <ion-item>
+      <ion-label position="floating">Remark</ion-label>
+      <ion-textarea [(ngModel)]="commentAction"></ion-textarea>
+    </ion-item>
+
+    <small class="text-danger ml-5" *ngIf="emptyCommentActionMsg!=''">{{emptyCommentActionMsg}}</small>
+
+  </ng-container>
+</ion-content>
+
+
+<ion-footer>
+
+
+
+  <ion-buttons *ngIf="showMoreOptionDiv" style="background-color: #f4f5f8; height: 50px;">
+    <ion-button color="dark" class="w-42" (click)="doActionOnPayoutDetail('hold')">
+      Hold
+    </ion-button>
+    <ion-button color="dark" class="w-42" (click)="doActionOnPayoutDetail('reject')">
+      Reject
+    </ion-button>
+  </ion-buttons>
+
+
+  <ion-toolbar color="light">
+    <ion-buttons *ngIf="detailedCase && detailedCase.isDirty!='Y'">
+      <ion-button class="w-42" (click)="doActionOnPayoutDetail('approve')">
+        Approve
+      </ion-button>
+      <ion-button class="w-42" (click)="doActionOnPayoutDetail('rc')">
+        Re-Compute
+      </ion-button>
+      <ion-button (click)="toogleMoreOptionDiv()" class="w-16">
+        <ion-icon name="ellipsis-vertical-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+
+    <ion-buttons *ngIf="detailedCase && detailedCase.isDirty=='Y'">
+      <ion-button class="w-42" (click)="doActionOnPayoutDetail('hold')">
+        Hold
+      </ion-button>
+      <ion-button class="w-42" (click)="doActionOnPayoutDetail('rc')">
+        Re-Compute
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-footer>

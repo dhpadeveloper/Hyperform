@@ -1,0 +1,47 @@
+<ion-app>
+
+    <ion-menu contentId="main-content" type="overlay">
+      <ion-header>
+        <ion-toolbar *ngIf="isUserLoggedIn()" style="margin-top: 20px;" color="primary">
+          <ion-title>{{currentUser.name}}</ion-title>
+          <!-- <ion-title>{{currentUser.email}}</ion-title> -->
+          <!-- <ion-note> kmbl80458@gmail.com</ion-note>   -->
+          <ion-note class="d-note"> kmbl80458@gmail.com</ion-note> 
+        </ion-toolbar>
+      </ion-header>
+      <ion-content>
+        <ion-list style="margin-top: -20px;" id="inbox-list">
+          <ng-container *ngIf= "payoutTypes">
+          <ion-item >
+            <ion-label>Payout Type:</ion-label>
+            <ion-select   [(ngModel)]="selectedPayout" (ionChange)="changePayoutType(selectedPayout)" interface="popover">
+              <ion-select-option *ngFor="let payout of payoutTypes" [value]="payout">{{payout.type}}</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ng-container>
+          <!-- <ion-list-header>KMBL80458</ion-list-header>
+          <ion-note>kmbl80458@gmail.com</ion-note> -->
+    <ng-container *ngIf="!isUserLoggedIn()">
+          <ion-menu-toggle auto-hide="false" *ngFor="let p of logoutMenu; let i = index">
+            <ion-item (click)="goto(p.title,p.url,i)" routerDirection="root" [routerLink]="[p.url]" lines="none" detail="false" [class.selected]="selectedIndex == i">
+              <ion-icon slot="start" [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'"></ion-icon>
+              <ion-label>{{ p.title }}</ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+        </ng-container>
+
+      <ng-container *ngIf="isUserLoggedIn()">
+          <ion-menu-toggle auto-hide="false" *ngFor="let p of loginMenuItem; let i = index">
+            <ion-item  *ngIf="p.visible" (click)="goto(p.title,p.url,i)" routerDirection="root" 
+            [routerLink]="[p.url]" routerLinkActive="is-active" lines="none" detail="false" >
+              <ion-icon slot="start" [ios]="p.icon + '-outline'" [md]="p.icon + '-sharp'"></ion-icon>
+              <ion-label>{{ p.title }}</ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+        </ng-container>
+        </ion-list>
+      </ion-content>
+    </ion-menu>
+    <ion-router-outlet id="main-content"></ion-router-outlet>
+
+</ion-app>

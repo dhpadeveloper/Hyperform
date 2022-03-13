@@ -1,0 +1,29 @@
+[
+  {
+    "title": "Dashboard",
+    "url": "home",
+    "icon": "bar-chart",
+    "visible":true,
+    "menuId":31
+  },
+  {
+    "title": "Payout Review",
+    "url": "payout-review",
+    "icon": "list",
+    "visible":true,
+    "menuId":40
+  },
+  {
+    "title": "Invoice",
+    "url": "invoice",
+    "icon": "document-text",
+    "visible":true,
+    "menuId":44
+  },
+  {
+    "title": "Logout",
+    "url": "login",
+    "icon": "log-out",
+    "visible":true
+  }
+]
